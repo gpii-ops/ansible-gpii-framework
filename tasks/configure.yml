@@ -28,6 +28,11 @@
     group: "{{ gpii_framework_groupname }}"
   when: gpii_framework_orca_dir_result.stat.exists == false
   
+# The shell module is used instead of the service module because
+# the latter fails to create an environment where systemctl can
+# locate and talk to the systemd daemon. This is likely to Ansible
+# overzealous efforts to sanitize the environment and shows up
+# in other issues in their bug tracker.
 - name: Start Orca
   shell: "/usr/bin/systemctl --user start orca.service"
   become: yes
