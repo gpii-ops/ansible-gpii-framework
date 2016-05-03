@@ -29,10 +29,7 @@
   when: gpii_framework_orca_dir_result.stat.exists == false
   
 - name: Start Orca
-  service:
-    name: orca.service
-    state: started
-    args: --user
+  shell: "/usr/bin/systemctl --user start orca.service"
   become: yes
   become_user: "{{ gpii_framework_username }}"
   when: gpii_framework_orca_dir_result.stat.exists == false
@@ -44,10 +41,7 @@
   when: gpii_framework_orca_dir_result.stat.exists == false
   
 - name: Stop Orca
-  service:
-    name: orca.service
-    state: stopped
-    args: --user
+  shell: "/usr/bin/systemctl --user stop orca.service"
   become: yes
   become_user: "{{ gpii_framework_username }}"
   when: gpii_framework_orca_dir_result.stat.exists == false
