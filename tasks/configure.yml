@@ -24,7 +24,8 @@
   when: gpii_framework_orca_dir_result.stat.exists == false
 
 - name: Enable and start PackageKit
-  service:
+  systemd:
     name: packagekit
+    masked: false
     enabled: true
     state: started
