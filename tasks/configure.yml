@@ -22,4 +22,9 @@
     owner: "{{ gpii_framework_username }}"
     group: "{{ gpii_framework_groupname }}"
   when: gpii_framework_orca_dir_result.stat.exists == false
-  
+
+- name: Enable and start PackageKit
+  service:
+    name: packagekit
+    enabled: true
+    state: started
